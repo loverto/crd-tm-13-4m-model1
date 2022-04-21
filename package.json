@@ -1,0 +1,110 @@
+{
+  "name": "crd-tm-13-4m-model1",
+  "version": "0.0.1",
+  "description": "CRD贴膜13寸四面模型1通用排版工具",
+  "main": "dist/main/main.js",
+  "scripts": {
+    "electron-rebuild": "electron-rebuild",
+    "compile": "electron-webpack",
+    "release": "cross-env VUE_APP_BASE_API=http://api.console.xintonglu.top npm run compile && electron-builder --publish always",
+    "dev": "cross-env VUE_APP_BASE_API=http://api.console.xintonglu.top && electron-webpack dev",
+    "lint": "tslint src/**/*.ts -- --fix",
+    "dist-win": "cross-env VUE_APP_BASE_API=http://api.console.xintonglu.top npm run compile && electron-builder --win --ia32",
+    "start": " chcp 65001&& npm run dev",
+    "changelog": "conventional-changelog-writer -p angular -i CHANGELOG.md -s -r 0",
+    "log": "conventional-changelog",
+    "package": "electron-packager . HelloWorld --platform=win32 --arch=ia32 --icon=icon.ico --out=./out --asar --app-version=0.0.1",
+    "rebuildwinax:gyp": "cd ./node_modules/winax && node-gyp rebuild --arch=ia32 --build-from-source --runtime=electron --msvs_version=2017  --target=8.2.4 --dist-url=https://www.electronjs.org/headers",
+    "rebuildsleep:gyp": "cd ./node_modules/sleep && node-gyp rebuild --runtime=electron --msvs_version=2017  --target=6.0.9 --dist-url=https://npm.taobao.org/mirrors/atom-shell"
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "build": {
+    "appId": "com.yinlongfei.tm.13.4m.model.common",
+    "win": {
+      "requestedExecutionLevel": "requireAdministrator",
+      "icon": "public/img/icons/android-chrome-512x512.png"
+    },
+    "publish": [
+      {
+        "provider": "s3",
+        "bucket": "crd-tm-4m-model1-13-package-app",
+        "endpoint": "http://minio.xintonglu.top/"
+      }
+    ],
+    "npmArgs": [
+      "--runtime=electron",
+      "--msvs_version=2017",
+      "--target=6.0.9",
+      "--dist-url=https://npm.taobao.org/mirrors/atom-shell"
+    ],
+    "npmRebuild": false
+  },
+  "repository": "https://github.com/electron/electron-quick-start",
+  "keywords": [
+    "Electron",
+    "quick",
+    "start",
+    "tutorial",
+    "demo"
+  ],
+  "author": "yinlongfei",
+  "license": "ylf-1.0",
+  "devDependencies": {
+    "@babel/core": "^7.12.10",
+    "@babel/plugin-proposal-function-bind": "^7.12.1",
+    "@babel/plugin-transform-runtime": "^7.12.10",
+    "@babel/preset-env": "^7.12.11",
+    "@babel/register": "^7.12.0",
+    "@commitlint/cli": "^8.2.0",
+    "@types/fs-extra": "^8.0.1",
+    "@types/inquirer": "^6.5.0",
+    "@types/lowdb": "^1.0.9",
+    "@types/node": "10.17.6",
+    "@types/request-promise-native": "^1.0.17",
+    "babel-loader": "^8.2.2",
+    "commitizen": "^4.0.3",
+    "concurrently": "^5.3.0",
+    "conventional-changelog": "^3.1.18",
+    "copy-webpack-plugin": "5.0.3",
+    "cross-env": "^7.0.3",
+    "cz-customizable": "^6.2.0",
+    "electron": "8.2.4",
+    "electron-builder": "22.4.1",
+    "electron-packager": "14.2.1",
+    "electron-rebuild": "1.10.1",
+    "electron-webpack": "^2.8.2",
+    "eslint": "^5.16.0",
+    "husky": "^3.1.0",
+    "stylus": "^0.54.7",
+    "stylus-loader": "^3.0.2",
+    "tslint": "^5.10.0",
+    "tslint-config-standard": "^7.0.0",
+    "typescript": "~3.7.3",
+    "webpack": "~4.42.1",
+    "webpack-cli": "^3.3.12",
+    "winax": "^1.18.0"
+  },
+  "dependencies": {
+    "@loverto/dm.dll": "1.1.4",
+    "axios": "^0.19.2",
+    "core-js": "^3.3.2",
+    "dateformat": "^4.4.1",
+    "dayjs": "^1.7.4",
+    "electron-log": "^4.1.1",
+    "electron-updater": "4.2.5",
+    "element-ui": "^2.13.0",
+    "fix-path": "^2.1.0",
+    "fs-extra": "^8.1.0",
+    "js-cookie": "^2.2.1",
+    "keycode": "2.2.0",
+    "lodash-id": "^0.14.0",
+    "log4js": "6.2.0",
+    "lowdb": "^1.0.0",
+    "node-machine-id": "^1.1.12",
+    "source-map-support": "^0.5.19"
+  }
+}
